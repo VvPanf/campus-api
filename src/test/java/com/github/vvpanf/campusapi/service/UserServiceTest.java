@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
@@ -73,7 +73,7 @@ class UserServiceTest {
     @Test
     public void handleGetUsersByNameMatches_UserNotFoundInList_ReturnEmptyPage() {
         // given
-        when(userRepo.findByFullName(eq("Sidorov"), any(Pageable.class))).thenReturn(new PageImpl<>(Collections.emptyList()));
+        when(userRepo.findByFullNameContains(startsWith("Sid"), any(Pageable.class))).thenReturn(new PageImpl<>(Collections.emptyList()));
         // when
         Page<UserDto> result = userService.getUsersByNameMatches("Sidorov", pageable);
         // then
@@ -83,7 +83,7 @@ class UserServiceTest {
     @Test
     public void handleGetUsersByNameMatches_UserIsInList_ReturnPageWithFondUser() {
         // given
-        when(userRepo.findByFullName(eq("Ivanov"), any(Pageable.class))).thenReturn(new PageImpl<>(userList.subList(0, 1)));
+        when(userRepo.findByFullNameContains(startsWith("Iva"), any(Pageable.class))).thenReturn(new PageImpl<>(userList.subList(0, 1)));
         // when
         Page<UserDto> result = userService.getUsersByNameMatches("Ivanov", pageable);
         // then

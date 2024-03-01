@@ -340,9 +340,9 @@ class ReservationServiceTest {
         Page<ReservationDto> result = reservationService.getReservationsByCampusIdAndRoomId(1l, 1l, pageable);
         // then
         List<ReservationDto> expectedReservationList = List.of(
-            new ReservationDto(3l, dateOfReserv, LocalTime.of(13, 0), LocalTime.of(14, 0), null, null),
-            new ReservationDto(2l, dateOfReserv, LocalTime.of(11, 0), LocalTime.of(12, 0), null, null),
-            new ReservationDto(1l, dateOfReserv, LocalTime.of(10, 0), LocalTime.of(11, 0), null, null)
+                new ReservationDto(1l, dateOfReserv, LocalTime.of(10, 0), LocalTime.of(11, 0), null, null),
+                new ReservationDto(2l, dateOfReserv, LocalTime.of(11, 0), LocalTime.of(12, 0), null, null),
+                new ReservationDto(3l, dateOfReserv, LocalTime.of(13, 0), LocalTime.of(14, 0), null, null)
         );
         assertArrayEquals(expectedReservationList.toArray(), result.getContent().toArray());
         assertEquals(1, result.getTotalPages());

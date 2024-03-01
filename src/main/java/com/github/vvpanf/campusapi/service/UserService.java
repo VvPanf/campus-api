@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
     UserRepo userRepo;
     ModelMapper modelMapper;
@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public Page<UserDto> getUsersByNameMatches(String nameMatches, Pageable pageable) {
-        return userRepo.findByFullName(nameMatches, pageable).map(user -> modelMapper.map(user, UserDto.class));
+        return userRepo.findByFullNameContains(nameMatches, pageable).map(user -> modelMapper.map(user, UserDto.class));
     }
 
     public UserDto getUserById(Long id) {

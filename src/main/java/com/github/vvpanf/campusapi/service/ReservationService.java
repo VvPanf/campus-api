@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ReservationService {
     ReservationRepo reservationRepo;
     UserRepo userRepo;

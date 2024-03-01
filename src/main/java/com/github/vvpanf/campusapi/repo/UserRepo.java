@@ -6,5 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User, Long> {
-    Page<User> findByFullName(String fullName, Pageable pageable);
+    Page<User> findByFullNameContains(String fullName, Pageable pageable);
 }
+

@@ -1,15 +1,12 @@
 package com.github.vvpanf.campusapi.service;
 
 import com.github.vvpanf.campusapi.dto.RoomDto;
-import com.github.vvpanf.campusapi.dto.UserDto;
 import com.github.vvpanf.campusapi.entity.Campus;
 import com.github.vvpanf.campusapi.entity.Reservation;
 import com.github.vvpanf.campusapi.entity.Room;
-import com.github.vvpanf.campusapi.entity.User;
 import com.github.vvpanf.campusapi.repo.CampusRepo;
 import com.github.vvpanf.campusapi.repo.RoomRepo;
 import com.github.vvpanf.campusapi.utils.TestUtils;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -109,7 +106,7 @@ class RoomServiceTest {
         // given
         RoomService.RoomSearchParams searchParams = new RoomService.RoomSearchParams(reservationDate, start, end, null);
         // when
-        Page<RoomDto> result = roomService.getRoomFiltered(1l, pageable, searchParams);
+        Page<RoomDto> result = roomService.getRoomsFiltered(1l, pageable, searchParams);
         // then
         List<RoomDto> expectedRoomList = List.of(
                 new RoomDto(1l, "101", "Lab", 20)

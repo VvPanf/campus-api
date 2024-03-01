@@ -11,8 +11,8 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -40,5 +40,5 @@ public class Reservation {
                joinColumns = @JoinColumn(name = "reservation_id"),
                inverseJoinColumns = @JoinColumn(name = "room_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
-    final Set<Room> rooms = new HashSet<>();
+    final List<Room> rooms = new ArrayList<>();
 }

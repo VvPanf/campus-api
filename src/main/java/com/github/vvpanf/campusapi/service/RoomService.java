@@ -1,7 +1,6 @@
 package com.github.vvpanf.campusapi.service;
 
 import com.github.vvpanf.campusapi.dto.RoomDto;
-import com.github.vvpanf.campusapi.entity.Campus;
 import com.github.vvpanf.campusapi.entity.Room;
 import com.github.vvpanf.campusapi.repo.CampusRepo;
 import com.github.vvpanf.campusapi.repo.RoomRepo;
@@ -22,7 +21,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class RoomService {
     RoomRepo roomRepo;
     CampusRepo campusRepo;
@@ -34,7 +33,7 @@ public class RoomService {
         return roomRepo.findAllByCampusId(campusId, pageable).map(room -> modelMapper.map(room, RoomDto.class));
     }
 
-    public Page<RoomDto> getRoomFiltered(Long campusId, Pageable pageable, RoomSearchParams searchParams) {
+    public Page<RoomDto> getRoomsFiltered(Long campusId, Pageable pageable, RoomSearchParams searchParams) {
         List<RoomDto> result = roomRepo.findAllByCampusId(campusId).stream()
                 .filter(room -> filterByMinNumberOfSeats(searchParams, room))
                 .filter(room -> filterByAvailableFrom(searchParams, room))
