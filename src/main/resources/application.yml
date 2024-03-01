@@ -8,7 +8,12 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     generate-ddl: true
     show-sql: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
   h2:
     console.enabled: true
+  sql.init.mode: always
+  jackson.default-property-inclusion: NON_NULL
+  mvc:
+    pathmatch.matching-strategy: ant_path_matcher
