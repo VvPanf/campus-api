@@ -1,10 +1,7 @@
 package com.github.vvpanf.campusapi.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.HashSet;
@@ -14,6 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = {"campus", "reservations"})
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Room {
     @Id
