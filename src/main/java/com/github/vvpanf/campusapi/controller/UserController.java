@@ -5,6 +5,7 @@ import com.github.vvpanf.campusapi.dto.ReservationDto;
 import com.github.vvpanf.campusapi.dto.UserDto;
 import com.github.vvpanf.campusapi.service.ReservationService;
 import com.github.vvpanf.campusapi.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody UserDto userDto) {
         return ResponseEntity.status(201).body(userService.addUser(userDto));
     }
 
@@ -60,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/{user-id}/reservations")
-    public ResponseEntity<?> addUserReservation(@PathVariable("user-id") Long userId, @RequestBody ReservationDto reservationDto) {
+    public ResponseEntity<?> addUserReservation(@PathVariable("user-id") Long userId, @Valid @RequestBody ReservationDto reservationDto) {
         reservationService.validateReservation(reservationDto);
         return ResponseEntity.status(201).body(reservationService.addReservation(userId, reservationDto));
     }

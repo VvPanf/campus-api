@@ -5,6 +5,7 @@ import com.github.vvpanf.campusapi.dto.RoomDto;
 import com.github.vvpanf.campusapi.service.CampusService;
 import com.github.vvpanf.campusapi.service.ReservationService;
 import com.github.vvpanf.campusapi.service.RoomService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -44,7 +45,7 @@ public class CampusController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCampus(@RequestBody CampusDto campusDto) {
+    public ResponseEntity<?> createCampus(@Valid @RequestBody CampusDto campusDto) {
         return ResponseEntity.status(201).body(campusService.addCampus(campusDto));
     }
 
@@ -76,7 +77,7 @@ public class CampusController {
     @PostMapping("/{campus-id}/rooms")
     public ResponseEntity<?> createCampusRoom(
             @PathVariable("campus-id") Long campusId,
-            @RequestBody RoomDto roomDto
+            @Valid @RequestBody RoomDto roomDto
     ) {
         return ResponseEntity.status(201).body(roomService.addRoom(campusId, roomDto));
     }
