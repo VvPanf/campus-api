@@ -1,5 +1,6 @@
 package com.github.vvpanf.campusapi.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDto {
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     Long id;
     @NotBlank(message = "User fullName is required")
     String fullName;

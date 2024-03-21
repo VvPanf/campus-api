@@ -1,5 +1,6 @@
 package com.github.vvpanf.campusapi.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -13,6 +14,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CampusDto {
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     Long id;
     @NotBlank(message = "Campus name is required")
     String name;
